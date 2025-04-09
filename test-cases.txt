@@ -1,0 +1,162 @@
+Test Case ID: TC001
+Title: Booking with all valid data
+Description: User passes all valid data: Firstname, Lastname, Email, Phone in full format (starting with '+38') and chooses correct booking time
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@gmail.com
+- Phone: +380688553284
+- Booking time: from 01.05.2025 to 31.05.2025
+Expected result: Booking approved
+Actual result: Booking approved, 'Booking Successful!' message appeared.
+Status: Pass
+
+Test Case ID: TC002
+Title: Assuring earlier booked dates shown as Unavailable
+Description: Earlier booked dates (01.05.2025 to 31.05.2025 and 04.06.2025 to 06.06.2025) now shown in booking calendar as Unavailable
+Expected result: Earlier booked dates shown as Unavailable
+Actual result: Earlier booked dates shown as Unavailable
+Status: Pass
+
+Test Case ID: TC003
+Title: Booking room with date which is already picked before
+Description: Passing valid booking data (Firstname, Lastname, Email, Phone in full format) except booking date
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@gmail.com
+- Phone: +380688553284
+- Booking time: from 04.06.2025 to 05.06.2025
+Expected result: message about being unable to create booking with date which were already picked before, no changes in calendar
+Actual result: message: "An error occurred while submitting your booking", no changes in calendar 
+Status: Pass
+
+Test Case ID: TC004
+Title: Booking room with all correct data except 'Firstname'
+Description: Passing valid booking data ('lastname', Email, Phone in full format, booking date) except 'firstname' (empty field)
+Book data:
+- Firstname: 
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@gmail.com
+- Phone: +380688553284
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper Firstname, no changes in calendar
+Actual result: 2 messages: "Firstname should not be blank" and "size must be between 3 and 18", no changes in calendar
+Status: Pass
+
+Test Case ID: TC006
+Title: Booking room with all correct data except 'Lastname'
+Description: Passing valid booking data (Firstname, Lastname, Email, Phone in full format, booking date) except 'lastname' (empty field)
+Book data:
+- Firstname: Eduard
+- Lastname: 
+- Email: zimae.9525@gmail.com
+- Phone: +380688553284
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper last Firstname, no changes in calendar
+Actual result: 2 messages: "size must be between 3 and 30" and "Lastname should not be blank", no changes in calendar
+Status: Pass
+
+Test Case ID: TC006
+Title: Booking room with all correct data except 'Email'
+Description: Passing all correct booking data (Firstname, Lastname, Phone in full format, booking date) except 'Email' (empty field)
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email:
+- Phone: +380688553284
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper Email, no changes in calendar
+Actual result: message: "must not be empty", no changes in calendar
+Status: Pass
+
+Test Case ID: TC007
+Title: Booking room with all correct data except 'Phone'
+Description: Passing all correct booking data (Firstname, Lastname, Email, booking date) except 'Phone' (empty field)
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@gmail.com
+- Phone:
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper Phone, no changes in calendar
+Actual result: message: "must not be empty", no changes in calendar
+Status: Pass
+
+Test Case ID: TC008
+Title: Booking room with all correct data except 'Phone'
+Description: Passing all correct booking data (Firstname, Lastname, Email, booking date) except 'Phone' (too short)
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@gmail.com
+- Phone: 1513412
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper Phone, no changes in calendar
+Actual result: message: "size must be between 11 and 21", no changes in calendar
+Status: Pass
+
+Test Case ID: TC009
+Title: Booking room with all correct data except 'Firstname'
+Description: Passing all correct booking data (Lastname, Email, Phone, booking date) except 'Firstname' (too short)
+Book data:
+- Firstname: Ed
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@gmail.com
+- Phone: +380688553284
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper Firstname, no changes in calendar
+Actual result: message: "size must be between 3 and 18", no changes in calendar
+Status: Pass
+
+Test Case ID: TC010
+Title: Booking room with all correct data except 'Email'
+Description: Passing all correct booking data (Firstname, Lastname, Phone, booking date) except 'Email' (wrong format: absent '@')
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae
+- Phone: +380688553284
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper Email, no changes in calendar
+Actual result: message: "must be a well-formed email address", no changes in calendar
+Status: Pass
+
+Test Case ID: TC011
+Title: Booking room with all correct data except 'Email'
+Description: Passing all correct booking data (Firstname, Lastname, Phone, booking date) except 'Email' (wrong format: uncorrect domain)
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@com
+- Phone: +380688553284
+- Booking time: from 17.06.2025 to 18.06.2025
+Expected result: message about being unable to create booking without proper Email, no changes in calendar
+Actual result: message: "Successfull booking", calendar changed
+Status: Fail
+
+Test Case ID: TC012
+Title: Booking room with for past date
+Description: Passing valid data (Firstname, Lastname, Email, Phone) except booking date (past date)
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@com
+- Phone: +380688553284
+- Booking time: from 06.04.2025 to 08.04.2025
+Expected result: message about being unable to create booking in past time, no changes in calendar
+Actual result: message: "Successfull booking", calendar changed
+Status: Fail
+
+Test Case ID: TC013
+Title: Booking room with date which includes in it booked date
+Description: Passing valid booking data (Firstname, Lastname, Email, Phone in full format) except booking date
+Book data:
+- Firstname: Eduard
+- Lastname: Zemlyanskyi
+- Email: zimae.9525@gmail.com
+- Phone: +380688553284
+- Booking time: from 03.06.2025 to 07.06.2025
+Expected result: message about being unable to create booking with date which includes other date which were already picked before, no changes in calendar
+Actual result: message: "Successfull booking", calendar changed
+Status: Fail

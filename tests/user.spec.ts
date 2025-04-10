@@ -236,18 +236,19 @@ test('TC013', async ({ page }) => {
   // first booking
   await page.goto('https://automationintesting.online/');
   await page.getByRole('button', { name: 'Book this room' }).first().click();
-  await page.getByRole('button', { name: 'Next' }).click();
-  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Next' }).first().click();
+  await page.getByRole('button', { name: 'Next' }).first().click();
   await passUserData(page)
   await page.getByRole('cell', { name: '01' }).first().hover();
   await page.mouse.down();
   await page.getByRole('cell', { name: '30' }).hover();
   await page.mouse.up();
   await page.getByRole('button', { name: 'Book', exact: true }).click();
+  await page.getByRole('button', { name: 'Close' }).first().click();
   // second booking
   await page.getByRole('button', { name: 'Book this room' }).first().click();
-  await page.getByRole('button', { name: 'Next' }).click();
-  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Next' }).first().click();
+  await page.getByRole('button', { name: 'Next' }).first().click();
   await passUserData(page)
   await page.getByRole('cell', { name: '01' }).first().hover();
   await page.mouse.down();

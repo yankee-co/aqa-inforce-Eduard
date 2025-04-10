@@ -29,3 +29,5 @@ To run all: npx playwright test
 To run in UI mode (separately):
 npx playwright test ./tests/user.spec.ts --ui
 npx playwright test ./tests/admin.spec.ts --ui
+
+![image](https://github.com/user-attachments/assets/3ca33c6d-3977-4c3a-b48a-916648451f29)

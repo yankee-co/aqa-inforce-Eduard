@@ -158,5 +158,5 @@ Book data:
 - Phone: +380688553284
 - Booking time: from 03.06.2025 to 07.06.2025
 Expected result: message about being unable to create booking with date which includes other date which were already picked before, no changes in calendar
-Actual result: message: "Successfull booking", calendar changed
-Status: Fail
+Actual result: message: "An error occurred while submitting your booking", no changes in calendar
+Status: Pass

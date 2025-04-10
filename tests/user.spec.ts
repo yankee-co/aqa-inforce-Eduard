@@ -197,6 +197,68 @@ test('TC010', async ({ page }) => {
   await expect(errorMessage).toBeVisible();
 });
 
+test('TC011', async ({ page }) => {
+  await page.goto('https://automationintesting.online/');
+  await page.getByRole('button', { name: 'Book this room' }).first().click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('textbox', { name: 'Firstname' }).click();
+  await page.getByRole('textbox', { name: 'Firstname' }).fill('Eduard');
+  await page.getByRole('textbox', { name: 'Lastname' }).click();
+  await page.getByRole('textbox', { name: 'Lastname' }).fill('Zemlyanskyi');
+  await page.locator('input[name="email"]').click();
+  await page.locator('input[name="email"]').fill('zimae.9525@com');
+  await page.locator('input[name="phone"]').click();
+  await page.locator('input[name="phone"]').fill('12421');
+  await page.getByRole('cell', { name: '01' }).hover();
+  await page.mouse.down();
+  await page.getByRole('cell', { name: '31' }).hover();
+  await page.mouse.up();
+  await page.getByRole('button', { name: 'Book', exact: true }).click();
+  const errorMessage = page.locator('p', { hasText: 'must be a well-formed email address' });
+  await expect(errorMessage).toBeVisible();
+});
+
+test('TC012', async ({ page }) => {
+  await page.goto('https://automationintesting.online/');
+  await page.getByRole('button', { name: 'Book this room' }).first().click();
+  await page.getByRole('button', { name: 'Back' }).click();
+  await passUserData(page)
+  await page.getByRole('cell', { name: '01' }).first().hover();
+  await page.mouse.down();
+  await page.getByRole('cell', { name: '25' }).nth(1).hover();
+  await page.mouse.up();
+  await page.getByRole('button', { name: 'Book', exact: true }).click();
+  const errorMessage = page.locator('p', { hasText: 'An error occurred while submitting your booking' });
+  await expect(errorMessage).toBeVisible();
+});
+
+test('TC013', async ({ page }) => {
+  // first booking
+  await page.goto('https://automationintesting.online/');
+  await page.getByRole('button', { name: 'Book this room' }).first().click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await passUserData(page)
+  await page.getByRole('cell', { name: '01' }).first().hover();
+  await page.mouse.down();
+  await page.getByRole('cell', { name: '30' }).hover();
+  await page.mouse.up();
+  await page.getByRole('button', { name: 'Book', exact: true }).click();
+  // second booking
+  await page.getByRole('button', { name: 'Book this room' }).first().click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await passUserData(page)
+  await page.getByRole('cell', { name: '01' }).first().hover();
+  await page.mouse.down();
+  await page.getByRole('cell', { name: '30' }).hover();
+  await page.mouse.up();
+  await page.getByRole('button', { name: 'Book', exact: true }).click();
+  // check error
+  const errorMessage = page.locator('p', { hasText: 'An error occurred while submitting your booking' });
+  await expect(errorMessage).toBeVisible();
+});
+
 // test('drag_and_drop', async ({ page }) => {
 //   await page.goto('https://commitquality.com/practice-drag-and-drop');
 //   await page.getByTestId('small-box').hover();
